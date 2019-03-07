@@ -10,6 +10,9 @@
   pointer-events: none;
   border: 2px solid;
 }
+li{
+  list-style: none;
+}
 
 .App-header {
   background-color: #282c34;

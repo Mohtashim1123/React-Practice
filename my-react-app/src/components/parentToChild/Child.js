@@ -1,6 +1,7 @@
 import React from 'react';
 
 const child = (props) => {
+    console.dir(props)
 return(
     <div>
         <h1>kjkd</h1>
