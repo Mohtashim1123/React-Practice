@@ -1,13 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment  } from 'react';
 // import logo from './logo.svg';
 // import Users from '../src/user/users';
 // import User from '../src/user/user'
 // import Child from './components/parentToChild/Child';
 // import Parent from './components/parentToChild/parent';
-import User from './component/user'
+// import User from './component/user'
 import './App.css';
 import uniqueId from 'react-html-id';
 
+
+
+
+const User = (props) => {
+  return (
+      <Fragment>
+          {/* <div key="1">hi</div>
+          <div key="1">hello</div> */}
+          {
+            props.greetings === 'hi'
+            ? `&lt;div&gt;${props.greetings}^slakmx`
+            : props.greetings
+          }
+          </Fragment>
+  )
+}
 class App extends Component {
   //   state = {
   //     name: 'techsith'
@@ -37,31 +53,31 @@ class App extends Component {
   //         </div>
   //       );
   //   }
-  constructor() {
-    super();
-    uniqueId.enableUniqueIds(this);
-    this.state = {
-      users: [
-        { id: this.nextUniqueId(), name: 'john', age: 20 },
-        { id: this.nextUniqueId(), name: 'peter', age: 30 },
-        { id: this.nextUniqueId(), name: 'patel', age: 25 },
-      ]
-    }
-    console.log(this.state);
-  }
+  // constructor() {
+  //   super();
+  //   uniqueId.enableUniqueIds(this);
+  //   this.state = {
+  //     users: [
+  //       { id: this.nextUniqueId(), name: 'john', age: 20 },
+  //       { id: this.nextUniqueId(), name: 'peter', age: 30 },
+  //       { id: this.nextUniqueId(), name: 'patel', age: 25 },
+  //     ]
+  //   }
+  //   console.log(this.state);
+  // }
   // changeTheWorld = (newTitle) =>{
   //   this.setState({
   // title: newTitle
   //   })
   // }
-  deleteUser = (index, e) => {
-    const users = Object.assign([], this.state.users)
-    users.splice(index, 1);
-    this.setState({ users: users })
-  }
-  changeUserName = (id, e) => {
-    debugger
-    this.setState({[e.target.name]: e.target.value})
+  // deleteUser = (index, e) => {
+  //   const users = Object.assign([], this.state.users)
+  //   users.splice(index, 1);
+  //   this.setState({ users: users })
+  // }
+  // changeUserName = (id, e) => {
+  //   debugger
+  //   this.setState({[e.target.name]: e.target.value})
     // const index = this.state.users.findIndex((user) => {
     //   console.log(index)
     //   return user.id === id
@@ -71,25 +87,13 @@ class App extends Component {
     // const users = Object.assign.name([], this.state.users);
     // users[index] = user;
     // this.setState({ users: users });
-  }
+ 
 
 
   render() {
     return (
       <div className="App">
-        <ul>
-          {
-            this.state.users.map((user, index) => {
-              return (<User
-                age={user.age}
-                deleteElement={() => this.deleteUser(this.index)}
-                changeEvent={(e) => this.changeUserName(this.index,e)}
-              >{user.name}</User>
-              )
-            })
-          }
-        </ul>
-        {/* <Parent dosWhatEver={()=>this.changeTheWorld('new Worldd')} title={this.state.title}/> */}
+        <User greetings = "hi"/>
       </div>
     )
   }

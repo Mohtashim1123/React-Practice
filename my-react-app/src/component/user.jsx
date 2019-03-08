@@ -1,13 +1,12 @@
 import React from 'react'
+import React, { Component,Fragment  } from 'react';
 
-const user = (props) => {
-    return(
-    <li>
-        <span>Name: {props.children}, age= {props.age}</span>
-        <input onChange={props.changeEvent} value={props.children} name="users"/>
-        <button onClick={props.deleteElement}>Delete</button>
-            
-    </li>
+const user = () => {
+    return (
+        <div>
+            <div key="1">hi</div>
+            <div key="1">hello</div>
+        </div>
     )
 }
 
