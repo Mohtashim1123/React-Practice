@@ -5,115 +5,43 @@ import React, { Component } from 'react';
 // import Child from './components/parentToChild/Child';
 // import Parent from './components/parentToChild/parent';
 // import User from './component/user'
-import Child from './Child'
+// import Child from './Child'
 import './App.css';
 // import uniqueId from 'react-html-id';
 
 
+const Temp = (props) => {
+  console.log('render ui')
+  return (
+    <div>{props.val}</div>
+  )
+}
 
 
-// const User = (props) => {
-//   return (
-//       <Fragment>
-//           {/* <div key="1">hi</div>
-//           <div key="1">hello</div> */}
-//           {
-//             props.greetings === 'hi'
-//             ? `&lt;div&gt;${props.greetings}^slakmx`
-//             : props.greetings
-//           }
-//           </Fragment>
-//   )
-// }
+
 class App extends Component {
-  //   state = {
-  //     name: 'techsith'
-  //   }
-  //   // componentDidMount(){
-  //   //  this.changeName();
-  //   // }
-  //   changeName = (value) => {
-  //   console.log(value)
-  //     this.setState({name:value})
-  //   }
-
-  //   input = (event) =>{
-  //     debugger
-  // this.setState({name:event.target.value})
-  //   }
-
-  //   render() {
-  //       return (
-  //         <div className="App-header">
-  //         <h1>hello React</h1>
-  //           <Users/>
-  //           <button onClick={()=>this.changeName('value')}>Change state</button>
-  //           <button onClick={this.changeName.bind(this, 'Value :-)')}>Change state</button>
-  //           <div>{this.state.name}</div>
-  //           <input type="text" onChange={this.input} value={this.state.name} />
-  //         </div>
-  //       );
-  //   }
-  // constructor() {
-  //   super();
-  //   uniqueId.enableUniqueIds(this);
-  //   this.state = {
-  //     users: [
-  //       { id: this.nextUniqueId(), name: 'john', age: 20 },
-  //       { id: this.nextUniqueId(), name: 'peter', age: 30 },
-  //       { id: this.nextUniqueId(), name: 'patel', age: 25 },
-  //     ]
-  //   }
-  //   console.log(this.state);
-  // }
-  // changeTheWorld = (newTitle) =>{
-  //   this.setState({
-  // title: newTitle
-  //   })
-  // }
-  // deleteUser = (index, e) => {
-  //   const users = Object.assign([], this.state.users)
-  //   users.splice(index, 1);
-  //   this.setState({ users: users })
-  // }
-  // changeUserName = (id, e) => {
-  //   debugger
-  //   this.setState({[e.target.name]: e.target.value})
-  // const index = this.state.users.findIndex((user) => {
-  //   console.log(index)
-  //   return user.id === id
-  // });
-  // const user = Object.assign({}, this.state.users[index]);
-  // user.name = e.target.value;
-  // const users = Object.assign.name([], this.state.users);
-  // users[index] = user;
-  // this.setState({ users: users });
-
-  constructor() {
-    super();
-    this.state = {
-      name: 'peter'
-    };
-    console.log('construtor')
+  state = {
+    val: 1
   }
-  HandleChange = () =>{
-    debugger
-    this.setState({ name: 'Devit' })
+  componentDidMount() {
+    setInterval(() => {
+      this.setState(() => {
+        return { val:1 }
+      });
+    }, 2000)
   }
-  componentWillMount() {
-    if (window.innerWidth < 500) {
-      this.setState({ innerWidth: window.innerWidth });
-    }
-    console.log('componentWillMount')
-  }
+shouldComponentUpdate(nextProps,nextState){
+  console.log('nextState', nextState)
+  console.log('CurrentState', this.state)
+  return(this.state === nextState ? false:true)
+}
+
 
   render() {
+    console.log('render App')
     return (
       <div className="App">
-        name:{this.state.name}
-        | innerWidth: {this.state.innerWidth}
-        <Child name={this.state.name} />
-        <button onClick={() => this.HandleChange()}>Change State</button>
+        <Temp val={this.state.val+9} />
       </div>
     )
   }
