@@ -7,43 +7,39 @@ import React, { Component } from 'react';
 // import User from './component/user'
 // import Child from './Child'
 import './App.css';
+import Route from 'react-router-dom/Route';
+import { BrowserRouter as Router } from 'react-router-dom';
 // import uniqueId from 'react-html-id';
 
-
-const Temp = (props) => {
-  console.log('render ui')
-  return (
-    <div>{props.val}</div>
-  )
+const User =({match}) =>{
+  return(<h1>React {match.params.username}</h1>)
 }
-
-
 
 class App extends Component {
-  state = {
-    val: 1
-  }
-  componentDidMount() {
-    setInterval(() => {
-      this.setState(() => {
-        return { val:1 }
-      });
-    }, 2000)
-  }
-shouldComponentUpdate(nextProps,nextState){
-  console.log('nextState', nextState)
-  console.log('CurrentState', this.state)
-  return(this.state === nextState ? false:true)
-}
-
-
   render() {
-    console.log('render App')
     return (
-      <div className="App">
-        <Temp val={this.state.val+9} />
-      </div>
-    )
+      <Router>
+        <div className="App">
+          
+          <Route path="/" exact strict
+          render={
+            () => {
+              return(<h1>Wellcome Home</h1>)
+            }
+          }/>
+          
+          <Route path="/about/" exact strict
+          render={
+            () => {
+              return(<h1>Wellcome About</h1>)
+            }
+          }/>
+
+          <Route path="/user/:username" exact strict component={User}
+          />
+        </div>
+      </Router>
+    );
   }
 }
 
